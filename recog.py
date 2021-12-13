@@ -8,3 +8,7 @@ size = img.shape
 
 width = int(size[1]) * 2
 height = int(size[0]) * 2
+img = cv2.resize(img, (width, height))
+
+cv2.imshow("Result", img)
+cv2.waitKey(0)
