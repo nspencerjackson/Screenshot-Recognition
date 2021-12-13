@@ -6,29 +6,41 @@ pytesseract.pytesseract.tesseract_cmd = r'C:\\Program Files\\Tesseract-OCR\\tess
 img = cv2.imread('Capture.JPG')
 size = img.shape
 
-width = int(size[1]) * 2
-height = int(size[0]) * 2
-img = cv2.resize(img, (width, height))
+def resize(inIMG, inMultiplier):
+    width = int(size[1]) * inMultiplier
+    height = int(size[0]) * inMultiplier
+    outIMG = cv2.resize(inIMG, (width, height))
+    return outIMG
 
-cv2.imshow("Result", img)
-cv2.waitKey(0)
+def configureText(inText):
+    count = 0
+    temp = ""
+    for x in text:
+        if x == "\n":
+            if count == 0:
+                temp += ""
+                count += 1
+            else:
+                temp += " "
+                count = 0
+        elif x == "-":
+            count = 0
+            temp += x
+        else:
+            temp += x
+    return temp
 
-text = pytesseract.image_to_string(img)
-print(text)
-print(type(text))
+for i in range(3):
+    img = resize(img, (i+1))
 
-temp = ""
-for x in text:
-    if x == "\n":
-        temp += " "
-    else:
-        temp += x
+    cv2.imshow("Result", img)
+    cv2.waitKey(0)
 
-print(temp)
+    text = pytesseract.image_to_string(img)
+    print(configureText(text))
+#print(text)
+#print(type(text))
 
-#if "\n" in text:
-    #print("There is a new line character in text")
 
-arr = ["e", "d"]
+#print(temp)
 
-print(type(arr))
