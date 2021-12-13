@@ -15,3 +15,20 @@ cv2.waitKey(0)
 
 text = pytesseract.image_to_string(img)
 print(text)
+print(type(text))
+
+temp = ""
+for x in text:
+    if x == "\n":
+        temp += " "
+    else:
+        temp += x
+
+print(temp)
+
+#if "\n" in text:
+    #print("There is a new line character in text")
+
+arr = ["e", "d"]
+
+print(type(arr))
