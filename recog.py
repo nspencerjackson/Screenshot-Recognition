@@ -1,5 +1,7 @@
 import cv2
 import pytesseract
+import pyautogui
+
 
 pytesseract.pytesseract.tesseract_cmd = r'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
 
@@ -40,7 +42,7 @@ for i in range(3):
     print(configureText(text))
 #print(text)
 #print(type(text))
-
-
 #print(temp)
 
+im1 = pyautogui.screenshot(region=(699, 438, 809, 463))
+im1.save("")
